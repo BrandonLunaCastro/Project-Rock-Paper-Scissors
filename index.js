@@ -27,9 +27,53 @@ const playRound = (player,computer) => {
 }
 
 
-let playerSelection = "Paper"
+let game = () => {
+  
+  let pointsPlayer = 0,
+  pointsComputer = 0;
+  
 
-let computerSelection = getComputerChoise()
+  while(true){
+    let computerSelection = getComputerChoise()
+    console.log(computerSelection + " Seleccion de la pc")
+    let playerSelection = prompt("Choise: Rock Paper and Scissors")
+    playerSelection = playerSelection.slice(0,1).toUpperCase()+playerSelection.slice(1).toLowerCase()
 
-console.log(computerSelection + " Seleccion de la pc")
-console.log(playRound(playerSelection,computerSelection))
+    let answer = playRound(playerSelection,computerSelection)
+    alert(answer)
+
+
+     answer.slice(0,5) === "Again" 
+     ? ""
+     : answer.slice(0,8) === "You won!"
+      ? pointsPlayer++ 
+      : pointsComputer++;
+
+    if(pointsPlayer === 5){
+        break;
+    }else if(pointsComputer === 5){
+        break;
+    }
+
+    
+
+    }
+
+     
+    if(pointsPlayer === 5){
+        alert(`Congratulations! You are the best, points : you ${pointsPlayer} , computer ${pointsComputer}`)
+        console.log(pointsPlayer)
+      
+    }else if(pointsComputer === 5){
+        alert(`Computers wins , you louse :( , points : you ${pointsPlayer} , computer ${pointsComputer} `)
+        console.log(pointsComputer)
+        
+    }else{
+        alert(`Tie! again`)
+    }
+
+
+
+}
+
+game()
