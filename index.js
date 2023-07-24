@@ -27,17 +27,72 @@ const playRound = (player,computer) => {
 }
 
 
+let btns = document.querySelectorAll('button')
+const showResults = document.querySelector('.result'),
+      finalResult = document.querySelector('.finalResult')
+let pointsPlayer = 0,
+pointsComputer = 0;
+
+
+
+btns.forEach((btn)=> {
+  btn.addEventListener('click',e => {
+    let playerSelection = btn.getAttribute('data-selection')
+    playerSelection = playerSelection.slice(0,1).toUpperCase()+playerSelection.slice(1).toLowerCase()
+    game(playerSelection)
+})  
+})
+
+let game = (playerSelection) => {
+    let computerSelection = getComputerChoise()
+    console.log(computerSelection)
+    let answer = playRound(playerSelection,computerSelection)
+   
+    showResults.innerText = answer 
+
+    setTimeout(() => {
+       showResults.innerText = '' 
+    }, 1500);
+    
+    answer.slice(0,5) === "Again" 
+    ? ""
+    : answer.slice(0,8) === "You won!"
+     ? pointsPlayer++ 
+     : pointsComputer++;
+
+    console.log(pointsComputer,pointsPlayer)  
+     
+if(pointsPlayer === 5){
+    finalResult.innerText = `Congratulations! You are the best, points : you ${pointsPlayer} , computer ${pointsComputer}`
+    console.log(pointsPlayer)
+  
+}else if(pointsComputer === 5){
+    finalResult.innerText =  `Computers wins , you louse :( , points : you ${pointsPlayer} , computer ${pointsComputer} `
+    console.log(pointsComputer)
+    
+}else if (pointsPlayer === 5 && pointsComputer === 5){
+    finalResult.innerText = `Tie! again`
+}
+}
+
+  
+
+
+
+
+/* 
 let game = () => {
   
-  let pointsPlayer = 0,
-  pointsComputer = 0;
   
 
   while(true){
-    let computerSelection = getComputerChoise()
+   
+    let playerSelection;
     console.log(computerSelection + " Seleccion de la pc")
-    let playerSelection = prompt("Choise: Rock Paper and Scissors")
-    playerSelection = playerSelection.slice(0,1).toUpperCase()+playerSelection.slice(1).toLowerCase()
+
+   
+
+    //playerSelection = playerSelection.slice(0,1).toUpperCase()+playerSelection.slice(1).toLowerCase()
 
     let answer = playRound(playerSelection,computerSelection)
     alert(answer)
@@ -59,21 +114,14 @@ let game = () => {
 
     }
 
-     
-    if(pointsPlayer === 5){
-        alert(`Congratulations! You are the best, points : you ${pointsPlayer} , computer ${pointsComputer}`)
-        console.log(pointsPlayer)
-      
-    }else if(pointsComputer === 5){
-        alert(`Computers wins , you louse :( , points : you ${pointsPlayer} , computer ${pointsComputer} `)
-        console.log(pointsComputer)
-        
-    }else{
-        alert(`Tie! again`)
-    }
 
 
 
 }
 
 game()
+ */
+
+
+   
+   
