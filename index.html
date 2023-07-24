@@ -3,19 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Press+Start+2P&family=Roboto&display=swap" rel="stylesheet">
+    <link href="assets/styles.css" rel="stylesheet">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <header>
+        <h1>Rock Paper and Scissors GAME</h1>
+    </header>
     <main>
-        <button data-selection='rock' >Rock</button>
-        <button data-selection='paper'>Paper</button>
-        <button data-selection='scissors'>Scissors</button>
-
+    <section id="options">   
+        <article class="select">
+            <img src="assets/img/rock.png" alt="option Rock" data-selection='rock'>
+        </article>
+        <article class="select">
+            <img src="assets/img/paper.png" alt="option Paper" data-selection='paper'>
+        </article>
+        <article class="select">
+            <img src="assets/img/scissor.png" alt="option Scissors" data-selection='scissors'>
+        </article> 
+    </section>
+    <section id="text" >
         <div class="result"></div>
         <div class="finalResult"></div>
-
-
+        <div>
+            <p>Your Points: 0 </p>
+            <p>Computer Points: 0</p>
+        </div>
+    </section>  
+        <button class="reload">Reload ↻</button>
     </main>
+    <footer>Copyright Brandon Luna 2023</footer>
     <script src="index.js"></script>
 </body>
 </html>

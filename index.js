@@ -27,17 +27,17 @@ const playRound = (player,computer) => {
 }
 
 
-let btns = document.querySelectorAll('button')
+let options = document.querySelectorAll('img[data-selection]')
 const showResults = document.querySelector('.result'),
       finalResult = document.querySelector('.finalResult')
 let pointsPlayer = 0,
-pointsComputer = 0;
+    pointsComputer = 0;
 
+    console.log(options)
 
-
-btns.forEach((btn)=> {
-  btn.addEventListener('click',e => {
-    let playerSelection = btn.getAttribute('data-selection')
+options.forEach((option)=> {
+  option.addEventListener('click',e => {
+    let playerSelection = option.getAttribute('data-selection')
     playerSelection = playerSelection.slice(0,1).toUpperCase()+playerSelection.slice(1).toLowerCase()
     game(playerSelection)
 })  
@@ -65,63 +65,22 @@ let game = (playerSelection) => {
 if(pointsPlayer === 5){
     finalResult.innerText = `Congratulations! You are the best, points : you ${pointsPlayer} , computer ${pointsComputer}`
     console.log(pointsPlayer)
-  
+    reloadPoints()
 }else if(pointsComputer === 5){
     finalResult.innerText =  `Computers wins , you louse :( , points : you ${pointsPlayer} , computer ${pointsComputer} `
     console.log(pointsComputer)
-    
+    reloadPoints()
 }else if (pointsPlayer === 5 && pointsComputer === 5){
     finalResult.innerText = `Tie! again`
+    reloadPoints()
 }
 }
 
-  
 
+let btnReload = document.querySelector('.reload')
+btnReload.addEventListener('click',reloadPoints)
 
-
-
-/* 
-let game = () => {
-  
-  
-
-  while(true){
-   
-    let playerSelection;
-    console.log(computerSelection + " Seleccion de la pc")
-
-   
-
-    //playerSelection = playerSelection.slice(0,1).toUpperCase()+playerSelection.slice(1).toLowerCase()
-
-    let answer = playRound(playerSelection,computerSelection)
-    alert(answer)
-
-
-     answer.slice(0,5) === "Again" 
-     ? ""
-     : answer.slice(0,8) === "You won!"
-      ? pointsPlayer++ 
-      : pointsComputer++;
-
-    if(pointsPlayer === 5){
-        break;
-    }else if(pointsComputer === 5){
-        break;
-    }
-
-    
-
-    }
-
-
-
-
+function reloadPoints(){
+    pointsPlayer = 0;
+    pointsComputer = 0;
 }
-
-game()
- */
-
-
-   
-   
