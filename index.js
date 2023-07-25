@@ -26,20 +26,47 @@ const playRound = (player,computer) => {
 
 }
 
+function removeBorder(node,estilo){
+    if(typeof(estilo) !== "string"){
+        return;
+    }else{
+        node.classList.remove(estilo);
+    }  
+}
+
+function updateScore(pc,player){
+    pointsPC.textContent =`Computer Points : ${pc}`;
+    pointsHuman.textContent = `Your Points : ${player}`;   
+}
+
 
 let options = document.querySelectorAll('img[data-selection]')
 const showResults = document.querySelector('.result'),
       finalResult = document.querySelector('.finalResult')
 let pointsPlayer = 0,
     pointsComputer = 0;
+    
+let scoreSection = document.querySelector(".score"),
+    pointsPC = document.createElement("p"),
+    pointsHuman = document.createElement("p");
 
-    console.log(options)
+   /*  pointsPC.textContent =`Computer Points : ${pointsComputer}`;
+    pointsHuman.textContent = `Your Points : ${pointsPlayer}`;
+    
+    scoreSection.appendChild(pointsPC)
+    scoreSection.appendChild(pointsHuman) */    
+    
+    scoreSection.appendChild(pointsPC)
+    scoreSection.appendChild(pointsHuman)
+
+    updateScore(pointsComputer,pointsPlayer)
+
 
 options.forEach((option)=> {
   option.addEventListener('click',e => {
     let playerSelection = option.getAttribute('data-selection')
     playerSelection = playerSelection.slice(0,1).toUpperCase()+playerSelection.slice(1).toLowerCase()
-    game(playerSelection)
+    game(playerSelection);
 })  
 })
 
@@ -47,12 +74,6 @@ let game = (playerSelection) => {
     let computerSelection = getComputerChoise()
     console.log(computerSelection)
     let answer = playRound(playerSelection,computerSelection)
-   
-    showResults.innerText = answer 
-
-    setTimeout(() => {
-       showResults.innerText = '' 
-    }, 1500);
     
     answer.slice(0,5) === "Again" 
     ? ""
@@ -60,22 +81,29 @@ let game = (playerSelection) => {
      ? pointsPlayer++ 
      : pointsComputer++;
 
-    console.log(pointsComputer,pointsPlayer)  
+    showResults.textContent = answer 
+    showResults.classList.add("is-activeResult");
+
+
+  /*   pointsPC.textContent =`Computer Points : ${pointsComputer}`;
+    pointsHuman.textContent = `Your Points : ${pointsPlayer}`; */
+    updateScore(pointsComputer,pointsPlayer)
+    console.log(pointsComputer,pointsPlayer); 
      
 if(pointsPlayer === 5){
-    finalResult.innerText = `Congratulations! You are the best, points : you ${pointsPlayer} , computer ${pointsComputer}`
-    console.log(pointsPlayer)
-    reloadPoints()
+    finalResult.innerText = `Congratulations! You are the best`;
+    finalResult.classList.add("is-activeFinal");
+    reloadPoints();
 }else if(pointsComputer === 5){
-    finalResult.innerText =  `Computers wins , you louse :( , points : you ${pointsPlayer} , computer ${pointsComputer} `
-    console.log(pointsComputer)
-    reloadPoints()
+    finalResult.innerText =  `Computers wins, you louse :( `;
+    finalResult.classList.add("is-activeFinal");
+    reloadPoints();  
 }else if (pointsPlayer === 5 && pointsComputer === 5){
-    finalResult.innerText = `Tie! again`
-    reloadPoints()
+    finalResult.innerText = `Tie! again`;
+    finalResult.classList.add("is-activeFinal");
+    reloadPoints();
 }
 }
-
 
 let btnReload = document.querySelector('.reload')
 btnReload.addEventListener('click',reloadPoints)
@@ -83,4 +111,12 @@ btnReload.addEventListener('click',reloadPoints)
 function reloadPoints(){
     pointsPlayer = 0;
     pointsComputer = 0;
+    showResults.innerText = '';
+    removeBorder(showResults,"is-activeResult")
+  
+    setTimeout(() => {
+        finalResult.innerText = '';
+        removeBorder(finalResult,"is-activeFinal");
+        updateScore(pointsComputer,pointsPlayer)
+     }, 2500); 
 }

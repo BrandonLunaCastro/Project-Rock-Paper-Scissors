@@ -3,16 +3,71 @@
     font-family: 'Press Start 2P', cursive;
     box-sizing: border-box;
 }
+/* first styles */
+.sec.principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+h1{
+    font-size: 45px;
+    display: block;
+    white-space: nowrap;
+    border-right: 4px solid;
+    width: 15ch;
+    animation:typing 3s steps(15) infinite,
+    blink .5s infinite step-end alternate ;
+    overflow: hidden;
+
+}
+h2.animate{
+    font-size: 35px;
+    display: block;
+    white-space: nowrap;
+    border-right: 4px solid;
+    width: 13ch;
+    animation:typing 2s steps(13) infinite,
+    blink .5s infinite step-end alternate ;
+    overflow: hidden;
+}
+
+@keyframes typing{
+    from{
+        width: 0;
+        
+    }
+} 
+@keyframes blink{
+    50%{
+        border-color: transparent;
+    }
+}
+
+.sec{
+    transform: scale(0.8);
+    opacity: 0;
+    transition: all 1.2s ease-out;
+}
+
+.showGame{
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+/* GAME styles */
+
 body{
+    height: 100vh;
     margin: 0;
     padding: 0;
+    background:  #1f242d;
+    color: #fefe32;
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.95);
-    color: #fefe32;
-}
-header > h1{
-    text-align: center;
+   
 }
 
 main{
@@ -21,7 +76,11 @@ main{
     justify-content:center;
     align-items: center;
     gap: 16px;
-    flex: 2;
+    
+}
+
+.title{
+    text-align: center;
 }
 
 #options{
@@ -29,6 +88,7 @@ main{
     justify-content: center;
     align-items: center;
     margin-top: 60px;
+    flex: 2 0 400px;
 }
 
 .select{
@@ -53,10 +113,28 @@ main{
 }
 
 #text{
-    margin: 3rem;
+    margin: 1rem;
+    text-align: center;
+}
+.is-activeResult{
+    border:2px dotted white;
+    padding: 1rem;
+   
+  
+}
+.is-activeFinal{
+    border: 3px solid gold;
+    padding: 2rem ;
+    transition: all 3s ease;
+    transform: scale(1.2);
 }
 
 footer{
-    text-align: center;
-    flex: 1;
+    display: flex;
+    flex: 0 0 100px;
+    justify-content: center;
+    align-items: center;
+    margin: 50 auto;
+
+    
 }

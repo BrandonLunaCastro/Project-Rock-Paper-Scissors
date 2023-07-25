@@ -10,10 +10,17 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <section class="sec principal" data-section="sec1">
+        <h1 class="animate">Ready to fight?</h1>
+        <h2 class="animate">Scroll down!</h2>
+    </section>
+
+    <section class="sec" data-section="sec2">
     <header>
-        <h1>Rock Paper and Scissors GAME</h1>
+        <h2 class="title">Rock Paper and Scissors GAME</h2>
     </header>
     <main>
+    <h2>Choose your Weapon</h2>
     <section id="options">   
         <article class="select">
             <img src="assets/img/rock.png" alt="option Rock" data-selection='rock'>
@@ -28,14 +35,16 @@
     <section id="text" >
         <div class="result"></div>
         <div class="finalResult"></div>
-        <div>
-            <p>Your Points: 0 </p>
-            <p>Computer Points: 0</p>
+        <div class="score">
+
         </div>
     </section>  
         <button class="reload">Reload ↻</button>
     </main>
+  
+</section>  
     <footer>Copyright Brandon Luna 2023</footer>
     <script src="index.js"></script>
+    <script src="animation.js"></script>
 </body>
 </html>
