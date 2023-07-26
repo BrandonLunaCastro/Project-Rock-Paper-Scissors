@@ -3,45 +3,51 @@
     font-family: 'Press Start 2P', cursive;
     box-sizing: border-box;
 }
-/* first styles */
+
+/* typing text*/
 .sec.principal{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
+   
 }
+
 h1{
-    font-size: 45px;
+    font-size: 4em;
     display: block;
     white-space: nowrap;
     border-right: 4px solid;
     width: 15ch;
-    animation:typing 3s steps(15) infinite,
-    blink .5s infinite step-end alternate ;
+    animation: typing 4s steps(15)alternate infinite,
+    blink 0.5s infinite step-end alternate;
     overflow: hidden;
 
 }
-h2.animate{
-    font-size: 35px;
+
+.sec.principal h2{
+    font-size: 2em;
     display: block;
     white-space: nowrap;
     border-right: 4px solid;
-    width: 13ch;
-    animation:typing 2s steps(13) infinite,
-    blink .5s infinite step-end alternate ;
+    width:13ch ;
+    animation: typing 4s steps(13) alternate infinite,
+    blink 0.5s infinite step-end alternate;
     overflow: hidden;
 }
 
-@keyframes typing{
-    from{
+
+@keyframes typing {
+ 
+    0%{
         width: 0;
-        
     }
-} 
+   
+}
 @keyframes blink{
     50%{
-        border-color: transparent;
+        
     }
 }
 
@@ -129,12 +135,41 @@ main{
     transform: scale(1.2);
 }
 
+.reload{
+    box-shadow: 0 0 5px #feee32, 
+    0 0 25px #feee32;
+    width: 8rem;
+    height: 4rem;
+    border-radius: 8px;
+    background-color: #feee32;
+    border: 0px none;
+
+}
+.reload:hover{
+    box-shadow:  0 0 5px #feee32 , 
+    0 0 25px #feee32 , 0 0 50px #feee32,
+    0 0 50px #feee32 , 0 0 50px #feee32 ;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+
+
+/* footer */
+
+#git-logo{
+    width: 4rem;
+    height:4rem ;
+    margin: 10px;
+}
+
 footer{
     display: flex;
-    flex: 0 0 100px;
+    flex: 0 0 90px;
     justify-content: center;
     align-items: center;
-    margin: 50 auto;
-
+    margin: 60 auto;
+    margin-top: 10px;
+    background-color: #262e3b;
     
 }

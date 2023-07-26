@@ -3,14 +3,14 @@ function getComputerChoise(){
     let option;
 
     if(number === 1){
-        option = "Rock"
+        option = "Rock";
     }else if(number === 2){
-        option = "Paper"
+        option = "Paper";
     }else{
-        option = "Scissors"
+        option = "Scissors";
     }
 
-    return option
+    return option;
 
 }
 
@@ -40,40 +40,35 @@ function updateScore(pc,player){
 }
 
 
-let options = document.querySelectorAll('img[data-selection]')
+let options = document.querySelectorAll('img[data-selection]');
 const showResults = document.querySelector('.result'),
-      finalResult = document.querySelector('.finalResult')
+      finalResult = document.querySelector('.finalResult');
 let pointsPlayer = 0,
     pointsComputer = 0;
     
 let scoreSection = document.querySelector(".score"),
     pointsPC = document.createElement("p"),
     pointsHuman = document.createElement("p");
-
-   /*  pointsPC.textContent =`Computer Points : ${pointsComputer}`;
-    pointsHuman.textContent = `Your Points : ${pointsPlayer}`;
     
-    scoreSection.appendChild(pointsPC)
-    scoreSection.appendChild(pointsHuman) */    
-    
-    scoreSection.appendChild(pointsPC)
-    scoreSection.appendChild(pointsHuman)
+    scoreSection.appendChild(pointsPC);
+    scoreSection.appendChild(pointsHuman);
 
-    updateScore(pointsComputer,pointsPlayer)
+    updateScore(pointsComputer,pointsPlayer);
 
 
 options.forEach((option)=> {
   option.addEventListener('click',e => {
-    let playerSelection = option.getAttribute('data-selection')
-    playerSelection = playerSelection.slice(0,1).toUpperCase()+playerSelection.slice(1).toLowerCase()
+    let playerSelection = option.getAttribute('data-selection');
+    playerSelection = playerSelection.slice(0,1).toUpperCase()+playerSelection.slice(1).toLowerCase();
     game(playerSelection);
 })  
 })
 
+//Funcion principal
+
 let game = (playerSelection) => {
-    let computerSelection = getComputerChoise()
-    console.log(computerSelection)
-    let answer = playRound(playerSelection,computerSelection)
+    let computerSelection = getComputerChoise();
+    let answer = playRound(playerSelection,computerSelection);
     
     answer.slice(0,5) === "Again" 
     ? ""
@@ -81,42 +76,46 @@ let game = (playerSelection) => {
      ? pointsPlayer++ 
      : pointsComputer++;
 
-    showResults.textContent = answer 
+    showResults.textContent = answer; 
     showResults.classList.add("is-activeResult");
 
-
-  /*   pointsPC.textContent =`Computer Points : ${pointsComputer}`;
-    pointsHuman.textContent = `Your Points : ${pointsPlayer}`; */
-    updateScore(pointsComputer,pointsPlayer)
+    updateScore(pointsComputer,pointsPlayer);
     console.log(pointsComputer,pointsPlayer); 
-     
+
+  
+let audio = new Audio("./assets/audio/aplauso.mp3");
+let audioLose = new Audio("./assets/audio/Boo.mp3");
+
 if(pointsPlayer === 5){
+    audio.volume = 0.2;     
+    audio.play();
     finalResult.innerText = `Congratulations! You are the best`;
     finalResult.classList.add("is-activeFinal");
-    reloadPoints();
+    reloadGame();
 }else if(pointsComputer === 5){
+    audioLose.volume = 0.2;
+    audioLose.play()
     finalResult.innerText =  `Computers wins, you louse :( `;
     finalResult.classList.add("is-activeFinal");
-    reloadPoints();  
+    reloadGame();  
 }else if (pointsPlayer === 5 && pointsComputer === 5){
     finalResult.innerText = `Tie! again`;
     finalResult.classList.add("is-activeFinal");
-    reloadPoints();
+    reloadGame();
 }
 }
 
-let btnReload = document.querySelector('.reload')
-btnReload.addEventListener('click',reloadPoints)
+let btnReload = document.querySelector('.reload');
+btnReload.addEventListener('click',reloadGame);
 
-function reloadPoints(){
-    pointsPlayer = 0;
-    pointsComputer = 0;
+function reloadGame(){
     showResults.innerText = '';
-    removeBorder(showResults,"is-activeResult")
-  
+    removeBorder(showResults,"is-activeResult");
     setTimeout(() => {
         finalResult.innerText = '';
         removeBorder(finalResult,"is-activeFinal");
-        updateScore(pointsComputer,pointsPlayer)
-     }, 2500); 
+        pointsPlayer = 0;
+        pointsComputer = 0;
+        updateScore(pointsComputer,pointsPlayer);
+    }, 2500); 
 }
